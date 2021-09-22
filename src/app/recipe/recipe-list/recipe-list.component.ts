@@ -26,6 +26,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   searchSubscription: Subscription;
   authSub: Subscription;
   curRoute: string;
+  myRecipeRoute = false;
   recipes: Recipe[];
   // slides = [];
   category: string = '';
@@ -64,7 +65,6 @@ export class RecipeListComponent implements OnInit, OnDestroy {
               .pipe(map(authstate => authstate.user))
               .subscribe(user => {
                 this.recipeSubscription = this.store.select('recipes').pipe(map(state => state.recipes)).subscribe(recipes => {
-                  
                   const filteredRecipeData = this.getRecipeList(recipes,user)
                   this.recipes = filteredRecipeData;
                   
@@ -95,7 +95,8 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   getRecipeList(recipes: Recipe[], user: User) {
   
     const filteredRecipes: Recipe[] = [];
-    if (this.curRoute.includes('my-recipes')) {
+    this.myRecipeRoute = this.curRoute.includes('my-recipes');
+    if (this.myRecipeRoute) {
       recipes.forEach(recipe => {
         if (user && user.id === recipe.author) {
           filteredRecipes.push(recipe);

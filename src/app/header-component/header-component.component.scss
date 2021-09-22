@@ -2,17 +2,43 @@
 @use '~@angular/material' as mat;
 @import '~@angular/material/theming';
 
+@media (max-width: 768px) {
+    
+    .desktop-nav{
+        display: none;
+
+    }
+    .mobile-nav{
+        display: block;
+    }
+
+}
+@media (min-width: 768px) {
+    .desktop-nav{
+        min-height: 75px;
+        display: block;
+        mat-toolbar{
+            flex-direction: row;
+           } 
+    }
+    .mobile-nav{
+        display: none;
+        
+    }
+
+}
 
 mat-toolbar {
-   height: 75px;
+   min-height: 75px;
    width: 100%;
         margin: 0;
         padding: 0 0 0 0;
         flex-wrap: wrap;
+        
         justify-content:center;
         align-items:stretch;
             * {
-                height: inherit;
+                height: 100%;
             }
             a{
                 padding: 15px;  

@@ -1,7 +1,8 @@
 <div appDontPrint class="row">
 <div class="row olivegreen-darker">
     <div class="col-xs-12">
-       <h1><u>Meine Rezepte</u></h1>
+       <h1><u>{{myRecipeRoute ? "Meine Rezepte:" : "Alle Rezepte"}}</u></h1>
+       <h2>Kategorie: {{category == [] ? "Alle": category}}</h2>
     </div>
 
 <carousel [itemsPerSlide]="itemsPerSlide"
@@ -15,7 +16,6 @@
         <div class="recipe-variants">
           <fa-icon *ngIf="recipeEl.variants[0].checked" style="color: lightcoral;" [icon]="faMeatIcon"></fa-icon>   
           <fa-icon *ngIf="recipeEl.variants[1].checked" style="color: #ffff66;" [icon]="faCheeseIcon"></fa-icon>  
-          <fa-icon *ngIf="recipeEl.variants[2].checked" style="color:orange;" [icon]="faCarrotIcon"></fa-icon>  
           <fa-icon *ngIf="recipeEl.variants[2].checked" style="color: greenyellow;" [icon]="faSeedlingIcon"></fa-icon>  
         </div>  
        

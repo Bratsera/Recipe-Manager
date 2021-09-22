@@ -7,14 +7,31 @@
   src: url(./assets/fonts/Forum/Forum-Regular.ttf) format('truetype');
   font-style: normal;
   font-weight: 400;
+}
 
+@font-face {
+  font-family: 'Comfortaa';
+  src: url(./assets/fonts/Comfortaa/Comfortaa-VariableFont_wght.ttf) format('truetype');
+  font-style: normal;
+  font-weight: 700;
 }
 @font-face {
-  font-family: 'GoblinOne' ;
-  src: url(./assets/fonts/Goblin_One/GoblinOne-Regular.ttf) format('truetype');
+  font-family: 'Comfortaa';
+  src: url(./assets/fonts/Comfortaa/Comfortaa-VariableFont_wght.ttf) format('truetype');
+  font-style: normal;
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'Comfortaa';
+  src: url(./assets/fonts/Comfortaa/Comfortaa-VariableFont_wght.ttf) format('truetype');
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Comfortaa';
+  src: url(./assets/fonts/Comfortaa/Comfortaa-VariableFont_wght.ttf) format('truetype');
   font-style: normal;
   font-weight: 400;
-
 }
 @font-face {
   font-family: 'DarkerGrotesque';
@@ -109,7 +126,7 @@ $orange: #f5ce20;
     font-weight: 400 !important;
   }
   h1, h2 ,h3 {
-   font-family: 'GoblinOne' !important;
+   font-family: 'comfortaa' !important;
    
    letter-spacing: normal;
   }

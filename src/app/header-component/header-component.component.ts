@@ -44,10 +44,9 @@ export class HeaderComponentComponent implements OnInit, OnDestroy {
     this.routerSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.curRoute = event.url;
-        if (this.curRoute.includes('/shopping-list')) {
-          this.searchString = '';
-        }
-        else {
+        this.searchString = '';
+        this.categorySelected= '';
+        if (!this.curRoute.includes('/shopping-list')) {
           // Check if the user is authenticated. If not, hide the navbar pages
           this.recipeNames = [];
           this.userSubscription = this.store.select('authentification')
@@ -68,6 +67,7 @@ export class HeaderComponentComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.searchString = '';
+    this.categorySelected= '';
     this.userSubscription.unsubscribe();
     this.recipeSubscription.unsubscribe();
   }

@@ -64,7 +64,9 @@ export class RecipeListComponent implements OnInit, OnDestroy {
             this.userSubscription = this.store.select('authentification')
               .pipe(map(authstate => authstate.user))
               .subscribe(user => {
-                this.recipeSubscription = this.store.select('recipes').pipe(map(state => state.recipes)).subscribe(recipes => {
+                this.recipeSubscription = this.store.select('recipes')
+                .pipe(map(state => state.recipes))
+                .subscribe(recipes => {
                   const filteredRecipeData = this.getRecipeList(recipes,user)
                   this.recipes = filteredRecipeData;
                   

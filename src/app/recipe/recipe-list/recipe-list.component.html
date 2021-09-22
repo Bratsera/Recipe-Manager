@@ -2,7 +2,7 @@
 <div class="row olivegreen-darker">
     <div class="col-xs-12">
        <h1><u>{{myRecipeRoute ? "Meine Rezepte:" : "Alle Rezepte"}}</u></h1>
-       <h2>Kategorie: {{category == [] ? "Alle": category}}</h2>
+       <h2>Kategorie: {{category == '' ? "Alle": category}}</h2>
     </div>
 
 <carousel [itemsPerSlide]="itemsPerSlide"
@@ -11,7 +11,7 @@
           [interval]="false"
           [startFromIndex]="1"
           [isAnimated]="true">
-        <slide *ngFor='let recipeEl of recipes | filter:searchString:category as filtered; let i = index' #content
+        <slide *ngFor='let recipeEl of recipes | filter:searchString:category; let i = index' #content
         [routerLink]="recipeEl.id"> 
         <div class="recipe-variants">
           <fa-icon *ngIf="recipeEl.variants[0].checked" style="color: lightcoral;" [icon]="faMeatIcon"></fa-icon>   

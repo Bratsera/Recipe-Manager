@@ -1,0 +1,75 @@
+@use 'sass:map';
+@use '~@angular/material' as mat;
+@import '~@angular/material/theming';
+
+
+mat-toolbar {
+   height: 75px;
+   width: 100%;
+        margin: 0;
+        padding: 0 0 0 0;
+        flex-wrap: wrap;
+        justify-content:center;
+        align-items:stretch;
+            * {
+                height: inherit;
+            }
+            a{
+                padding: 15px;  
+                margin-left: 10px;      
+                margin-right: 10px; 
+            }
+
+ 
+            .recipe-nav{
+                height: 100%;
+                flex-shrink: 1;
+                flex-basis: 40%;
+                display: flex;
+            #searchField{
+            
+                display: flex;
+                justify-content: center;
+                flex-wrap: nowrap;
+                align-items: center;
+                *{     
+                    
+                    
+                    color: black;
+                    max-height: 40px;
+
+                }
+                select{
+                    
+                    padding-left: 5px;
+                    border-radius: 20px 0 0 20px;
+                    max-width: 170px;
+                }
+                #search-input{
+                    border-radius: 0 20px 20px 0;
+                    padding-right: 5px;
+                   
+                    width: 300px;
+                }
+                input{ 
+                    margin-right: 10px;
+                }
+                input:enabled{
+                   
+                    border:none;
+                    outline:none; 
+                   }
+                   select:enabled{
+                    box-shadow: none;
+                    border:none;
+                    outline:none; 
+                   }
+            }
+        }
+        
+    
+
+ 
+
+
+}

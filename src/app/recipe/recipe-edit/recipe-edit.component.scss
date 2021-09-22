@@ -1,0 +1,13 @@
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched{
+    border-color: red;
+    border-width: 2px;
+}
+.mat-button.mat-button-disabled.mat-button-disabled{
+    color: rgba($color: #000000, $alpha: 0.3);
+    cursor: not-allowed;
+}
+main{
+    padding: 10px 0px;
+    border-radius: 20px;
+}

@@ -1,0 +1,100 @@
+@media (min-width: 768px) {
+    #ing-container{
+        height: 400px;
+        
+    }
+
+}
+@media (max-width: 768px) {
+    #ing-container{
+        height: auto;
+    }
+
+}
+
+
+
+@media (min-width: 992px) {
+    #ing-container{
+        height: 300px;
+    }
+}
+
+@media (min-width: 1200px) {
+    #ing-container{
+        height: 200px;
+    }
+}
+img{
+    max-width: 270px;
+    border-radius: 5px;
+}
+
+
+fa-icon {
+    font-size: 3rem;
+    vertical-align: middle;
+    
+}
+.container-fluid{
+    border-radius: 20px;
+    padding-top: 10px;
+
+    article{
+       position: relative;
+       padding-right: 15px;
+    }
+ /*   #ingredient-list{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction:column;
+  
+    }*/
+    .sl-button-group{
+        display: flex;
+        justify-content:flex-end;
+        flex-direction: row;
+        align-items: flex-end;
+        padding-right: 4%;
+    }
+    .recipe-detail-button{
+       
+        float: right;
+        button{
+            margin-right: 10px;
+        }
+    }
+    #ing-container {
+        display: flex;
+        flex-flow: row nowrap;   
+      }
+      
+
+      
+    #ing-list {
+      
+        /* Content fills the rest of the container*/ 
+        flex: 1 0 auto;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        height: auto;
+        justify-content:flex-start;
+        padding-right: 40px;
+      }
+      
+
+      
+    #ing-item {
+        flex: 0 0 auto;
+        width:auto;
+        border-radius: 5px;
+      }
+      
+
+  
+      
+      
+  
+}
+

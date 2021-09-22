@@ -1,0 +1,42 @@
+<mat-toolbar class="olivegreen row">
+
+    <!-- class="btn-group" appDropdown*/-->
+    <a class="olivegreen-darkest" mat-stroked-button [routerLink]='["/recipes"]'>My Recipe book</a>
+
+    <div class="recipe-nav">
+        
+        <div id="searchField" *ngIf="router.url.includes('/recipes')">
+            <select class="olivegreen-lighter" name="Kategorie" id="category" [(ngModel)]="categorySelected"
+                (ngModelChange)="updateList()">
+                <option value="" selected>Alle</option>
+                <option *ngFor='let category of categories' value="{{category}}" class="olivegreen-lighter">{{category}}
+                </option>
+            </select>
+
+            <div id="search-input" class="olivegreen-lighter" style="border: 0px solid #DDD;background-color: white;">
+                <input style="border: none;" type="search" autocomplete="off" placeholder="Finde Rezept" #searchInput
+                    [(ngModel)]="searchString" (ngModelChange)="updateList()" [matAutocomplete]="auto" />
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option class="olivegreen-lighter" *ngFor="let option of autoComplete" [value]="option">
+                        {{option}}
+                    </mat-option>
+                </mat-autocomplete>
+                <fa-icon [icon]="searchIcon"></fa-icon>
+            </div>
+        </div>
+        <a mat-raised-button routerLinkActive='red' [routerLinkActiveOptions]='router.url.includes("/my-recipes") || router.url.includes("/new") ? {exact: true} : {exact: false}'
+            [routerLink]='["/recipes"]'>Alle Kochrezepte</a>
+        <a mat-raised-button routerLinkActive='red' [routerLinkActiveOptions]='router.url.includes("/new") ? {exact: true} : {exact: false}'
+            *ngIf="isAuthenticated" [routerLink]='["/recipes/my-recipes"]'>Meine Rezepte</a>
+        <a mat-raised-button routerLinkActive='red' *ngIf="isAuthenticated"
+            [routerLink]='router.url.includes("/my-recipes") ? ["/recipes/my-recipes/new"] : ["/recipes/new"]'>Neues Rezept</a>
+    </div>
+
+    <a mat-raised-button routerLinkActive='red' *ngIf="isAuthenticated"
+        [routerLink]='["/shopping-list"]'>Einkaufsliste</a>
+    <a mat-stroked-button routerLinkActive='red' *ngIf="!isAuthenticated" [routerLink]='["/auth"]'
+        class="olivegreen-darkest">Login</a>
+    <a class="olivegreen-darkest" *ngIf="isAuthenticated" mat-stroked-button style="cursor: pointer;"
+        (click)="onLogout()">Logout</a>
+
+</mat-toolbar>

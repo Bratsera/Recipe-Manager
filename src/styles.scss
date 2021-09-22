@@ -1,0 +1,214 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
+
+@font-face {
+  font-family: 'Forum' ;
+  src: url(./assets/fonts/Forum/Forum-Regular.ttf) format('truetype');
+  font-style: normal;
+  font-weight: 400;
+
+}
+@font-face {
+  font-family: 'GoblinOne' ;
+  src: url(./assets/fonts/Goblin_One/GoblinOne-Regular.ttf) format('truetype');
+  font-style: normal;
+  font-weight: 400;
+
+}
+@font-face {
+  font-family: 'DarkerGrotesque';
+  src: url(./assets/fonts/Darker_Grotesque/DarkerGrotesque-Light.ttf) format('truetype');
+  font-style: normal;
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'DarkerGrotesque';
+  src: url(./assets/fonts/Darker_Grotesque/DarkerGrotesque-Regular.ttf) format('truetype');
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'DarkerGrotesque';
+  src: url(./assets/fonts/Darker_Grotesque/DarkerGrotesque-Medium.ttf) format('truetype');
+  font-style: normal;
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'DarkerGrotesque';
+  src: url(./assets/fonts/Darker_Grotesque/DarkerGrotesque-SemiBold.ttf) format('truetype');
+  font-style: normal;
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'DarkerGrotesque';
+  src: url(./assets/fonts/Darker_Grotesque/DarkerGrotesque-Bold.ttf) format('truetype');
+  font-style: normal;
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'DarkerGrotesque';
+  src: url(./assets/fonts/Darker_Grotesque/DarkerGrotesque-Black.ttf) format('truetype');
+  font-style: normal;
+  font-weight: 900;
+}
+/* === Color configuration === */
+
+$red: #AA3939;
+$r_darker: #801515;
+$r_darkest: #550000;
+$r_lighter: #D46A6A;
+$r_lightest: #FFAAAA;
+
+$olivegreen: #6B9A33;
+$og_darker: #477413;
+$og_darkest: #294000;
+$og_lighter: #94C160;
+$og_lightest: #D4EE9F;
+
+$green: #2D882D;
+$g-lighter: #55AA55;
+$g-lightest: #88CC88;
+$g-darker: #116611;
+$g-darkest: #33d133;
+
+
+$pink: #882D60;
+$p_darker: #661141;
+$p_darkest: #440026;
+$p_lighter: #AA5585;
+$p_lightest: #CD88AF;
+
+$orange: #f5ce20;
+
+
+
+  @media print {
+    /* invert the display (show/hide) properties of the main */
+    /* aplication component and the printing component       */
+    
+    app-root > * {
+      
+      img {
+        width: 270px;
+      }
+      display: block;
+    }
+    .dontPrint {
+      display: none ;
+      *{
+        display: none;
+      }
+    }
+   
+  }
+  .mat-typography,.mat-body{
+
+    font-family: 'DarkerGrotesque', sans-serif !important ;
+    font-size: 20px !important;
+    font-weight: 400 !important;
+  }
+  h1, h2 ,h3 {
+   font-family: 'GoblinOne' !important;
+   
+   letter-spacing: normal;
+  }
+   
+  .olivegreen-lighter{
+    background-color: $og_lighter !important;
+  }
+  .olivegreen-lightest{
+    background-color: $og_lightest !important;
+  }
+  .olivegreen-darker{
+    background-color: $og_darker !important;
+  }
+  .olivegreen-darkest{
+    background-color: $og_darkest !important;
+  }
+  .olivegreen{
+    background-color: $olivegreen !important;
+  }
+  .green{
+    background-color: $green !important;
+  }
+  .green-lighter{
+    background-color: $g_lighter !important;
+  }
+  .green-lightest{
+    background-color: $g_lightest !important;
+  }
+  .green-darker{
+    background-color: $g_darker !important;
+  }
+  .red{
+    background-color: $red !important;
+  }
+  .red-darker{
+    background-color: $r_darker !important;
+  }
+  .red-lightest {
+    background-color: $r_lightest !important;
+  }
+  .red-lighter {
+    background-color: $r_lighter !important;
+  }
+  .pink-lighter {
+    background-color: $p_lighter !important;
+  }
+  .pink-lightest {
+    background-color: $p_lightest !important;
+  }
+  .orange{
+    background-color: $orange !important;
+  }
+
+  .green-text{
+    color: $green !important;
+  }
+
+html, body { height: 100%;
+background-color: $og_lightest; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+a:link, a:visited {
+  background-color: $olivegreen;
+  color: inherit;
+  text-decoration: none;
+}
+
+mat-toolbar, .dropdown-menu{
+  a:hover {
+    background-color:  $red !important;
+    text-decoration: none;
+  }}
+
+
+.carousel-control{
+  background-image: none !important;
+  width: 5%;
+}
+.icon-next, .icon-prev{
+  font-size: 50px !important;
+  
+}
+.mat-cell, .mat-header-cell{
+  color: black !important;
+
+ border-bottom: 1px solid black !important;
+ .mat-checkbox-frame{
+   border-color: black !important;
+ 
+}
+}
+.mat-table{
+  background-color: $og_lightest   !important;
+  thead{
+    background-color: $olivegreen  !important;
+   
+  }
+  
+}
+.cdk-drag-preview {
+  background-color: $og_lightest !important ;
+}

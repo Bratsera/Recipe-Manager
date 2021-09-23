@@ -9,6 +9,10 @@ export interface AuthResponseData {
     expiresIn: string;
     localId: string;
 }
+
+/**
+ * Service to set an auto-logout timer
+ */
 @Injectable({ providedIn: 'root' })
 export class AuthentificationService {
     tokenExpirationTimer: any;

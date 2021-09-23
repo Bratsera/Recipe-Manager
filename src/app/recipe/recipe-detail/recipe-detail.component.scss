@@ -12,8 +12,6 @@
 
 }
 
-
-
 @media (min-width: 992px) {
     #ing-container{
         height: 300px;
@@ -30,11 +28,9 @@ img{
     border-radius: 5px;
 }
 
-
 fa-icon {
     font-size: 3rem;
-    vertical-align: middle;
-    
+    vertical-align: middle;    
 }
 .container-fluid{
     border-radius: 20px;
@@ -44,12 +40,6 @@ fa-icon {
        position: relative;
        padding-right: 15px;
     }
- /*   #ingredient-list{
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction:column;
-  
-    }*/
     .sl-button-group{
         display: flex;
         justify-content:flex-end;
@@ -68,11 +58,8 @@ fa-icon {
         display: flex;
         flex-flow: row nowrap;   
       }
-      
-
-      
-    #ing-list {
-      
+           
+    #ing-list {     
         /* Content fills the rest of the container*/ 
         flex: 1 0 auto;
         display: flex;
@@ -82,9 +69,7 @@ fa-icon {
         justify-content:flex-start;
         padding-right: 40px;
       }
-      
-
-      
+        
     #ing-item {
         flex: 0 0 auto;
         width:auto;

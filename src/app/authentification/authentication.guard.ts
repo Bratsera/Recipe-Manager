@@ -9,7 +9,11 @@ import * as AuthActions from './store/authentification.actions';
 @Injectable({ providedIn: 'root' })
 export class AuthentificationGuard implements CanActivate {
 
-    constructor(private router: Router, private store: Store<fromApp.AppState>) { }
+    constructor(
+        private router: Router, 
+        private store: Store<fromApp.AppState>
+        ) { }
+
     /**
      * Prevents visiting the pages if the user is not logged in by redirecting to the /auth page
      */
@@ -32,6 +36,7 @@ export class AuthentificationGuard implements CanActivate {
                 }
                 // If no user is logged in, redirect to the /auth page
                 return this.router.createUrlTree(['/auth']);
-            }));
+            })
+        );
     }
 }

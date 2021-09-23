@@ -20,15 +20,20 @@ export class HeaderComponentComponent implements OnInit, OnDestroy {
 
   isAuthenticated = false;
 
-  // Searchbar
+  // -------------------Searchbar----------------------
   curRoute = '';
+  // Value of search dropdown-field in the template
   categorySelected: string = '';
+  // Value of search input-field in the template
   searchString: string = '';
+  // Options of search dropdown-field in the template
   categories: string[] = [];
+  // Recipe names that match the searchstring value to update the recipe-list
   recipeNames: string[] = [];
+  // Autocompletion options of search dropdown-field in the template
   autoComplete: string[] = [];
 
-  //Subscriptions
+  //-------------------Subscriptions-------------------
   private userSubscription: Subscription;
   private recipeSubscription: Subscription;
   routerSubscription: Subscription;
@@ -37,7 +42,6 @@ export class HeaderComponentComponent implements OnInit, OnDestroy {
     private store: Store<fromApp.AppState>,
     public router: Router,
     private searchService: RecipeSearchService) {
-
   }
 
   ngOnInit(): void {
@@ -45,7 +49,7 @@ export class HeaderComponentComponent implements OnInit, OnDestroy {
       if (event instanceof NavigationEnd) {
         this.curRoute = event.url;
         this.searchString = '';
-        this.categorySelected= '';
+        this.categorySelected = '';
         if (!this.curRoute.includes('/shopping-list')) {
           // Check if the user is authenticated. If not, hide the navbar pages
           this.recipeNames = [];
@@ -67,13 +71,12 @@ export class HeaderComponentComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.searchString = '';
-    this.categorySelected= '';
+    this.categorySelected = '';
     this.userSubscription.unsubscribe();
     this.recipeSubscription.unsubscribe();
   }
 
   onLogout(): void {
-
     this.store.dispatch(new AuthActions.Logout());
   }
 
@@ -92,13 +95,22 @@ export class HeaderComponentComponent implements OnInit, OnDestroy {
       })
     }
   }
-  filterRecipes(recipes: Recipe[], user: User) {
 
+  /**
+   * Filters the passed recipes array depending on the visited route by userid of the current user or the "publishRecipe"-property of each recipe
+   * to update the searchbar category an Autocompletion options in the template
+   * @param recipes The recipes array to filter
+   * @param user UserState of the cur user
+   * @returns an object containing two arrays of type string with all names an occuring categories of the filtered recipes 
+   */
+  filterRecipes(recipes: Recipe[], user: User) {
+    
     const filteredRecipeNames: string[] = [];
     const categories: string[] = [];
+    // If the current route contains 'my-recipes'
     if (this.curRoute.includes('my-recipes')) {
+      // Filter all recipes, where the author-property matches the user id
       recipes.forEach(recipe => {
-
         if (user && user.id === recipe.author) {
           filteredRecipeNames.push(recipe.name);
           if (categories.indexOf(recipe.category) === -1) {
@@ -107,7 +119,9 @@ export class HeaderComponentComponent implements OnInit, OnDestroy {
         }
       })
     }
+    // If the current route is on the global recipes route
     else if (this.curRoute.includes('/recipes')) {
+      // Filter all published recipes, this means where the recipe property "publishRecipe" is set to true
       recipes.forEach(recipe => {
         if (recipe.publishRecipe) {
           filteredRecipeNames.push(recipe.name);
@@ -117,7 +131,6 @@ export class HeaderComponentComponent implements OnInit, OnDestroy {
         }
       })
     }
-
     return {
       filteredRecipeNames,
       categories

@@ -9,14 +9,18 @@ export class AuthentificationInterceptorService implements HttpInterceptor {
 
   constructor(private store: Store<fromApp.AppState>) { }
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-    return this.store.select('authentification').pipe(take(1),
-      map(authstate => {
-        return authstate.user;
-      })
-      , exhaustMap(user => {
-        if (!user) return next.handle(req);
-        const modifiedRequest = req.clone({ params: new HttpParams().set('auth', user.token) });
-        return next.handle(modifiedRequest);
-      }));
+    return this.store.select('authentification')
+      .pipe(take(1),
+        map(authstate => {
+          return authstate.user;
+        })
+        , exhaustMap(user => {
+          if (!user) return next.handle(req);
+          const modifiedRequest = req.clone({
+            params: new HttpParams().set('auth', user.token)
+          });
+          return next.handle(modifiedRequest);
+        })
+      );
   }
 }

@@ -73,7 +73,6 @@ const handleError = (errorRes) => {
 
 @Injectable()
 export class AuthentificationEffects {
-
     /**
      * Sends a http-post-request to the backend whenever a signup-action is triggered to handle the authentification
      */

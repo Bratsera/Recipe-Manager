@@ -1,37 +1,26 @@
 <div class="center" *ngIf="isLoading">
-<app-loading-spinner></app-loading-spinner>
+    <app-loading-spinner></app-loading-spinner>
 </div>
 <div class="row" id="component-content" *ngIf="!isLoading">
-    
-    <div  >
-       <h1>Willkommen auf My Recipe Book!</h1>
-       <h3>Erstelle einen Account oder logge dich ein, um selber Rezepte sowie deine Einkaufsliste erstellen zu können.</h3>
+    <div>
+        <h1>Willkommen auf My Recipe Book!</h1>
+        <h3>Erstelle einen Account oder logge dich ein, um selber Rezepte sowie deine Einkaufsliste erstellen zu können.
+        </h3>
         <div class="alert alert-danger" *ngIf="errorMessage">
             <p> {{errorMessage}}</p>
         </div>
         <form #authForm="ngForm">
-                <div class="form-group">
-                    <label for="email">E-mail Adresse:</label>
-                    <input 
-                    type="email"
-                    ngModel
-                    class="form-control"
-                    name="email"
-                    required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Passwort</label>
-                    <input type="password"
-                    ngModel
-                    class="form-control"
-                    name="password"
-                    required
-                    minlength="6">
-                </div>
-            <button type="button" (click)="onSubmit(authForm, true)" 
-            class="btn btn-primary"
-            [disabled]="!authForm.valid">
-               Login
+            <div class="form-group">
+                <label for="email">E-mail Adresse:</label>
+                <input type="email" ngModel class="form-control" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Passwort</label>
+                <input type="password" ngModel class="form-control" name="password" required minlength="6">
+            </div>
+            <button type="button" (click)="onSubmit(authForm, true)" class="btn btn-primary"
+                [disabled]="!authForm.valid">
+                Login
             </button> oder
             <button type="button" class="btn btn-primary" (click)="onSubmit(authForm, false)">
                 Account erstellen

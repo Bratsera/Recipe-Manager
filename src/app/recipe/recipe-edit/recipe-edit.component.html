@@ -1,16 +1,20 @@
 <main class="row olivegreen">
-    <header class="col-xs-12"><h1>{{editMode ? "Rezept bearbeiten" : "Neues Rezept erstellen"}}</h1></header>
+    <header class="col-xs-12">
+        <h1>{{editMode ? "Rezept bearbeiten" : "Neues Rezept erstellen"}}</h1>
+    </header>
+    <!---------------------------------------------Edit section------------------------------------>
     <div class="col-xs-12">
         <form [formGroup]="recipeForm" (ngSubmit)=onSubmit()>
             <div class="row">
                 <div class="col-xs-12">
                     <button mat-button type="submit" [disabled]="!recipeForm.valid" class="orange">Speichern</button>
-                    <button mat-button  class="red" (click)="onCancel()">Abbrechen</button>
+                    <button mat-button class="red" (click)="onCancel()">Abbrechen</button>
                     <div style="padding-top:5px;">
-                        <mat-checkbox formControlName="publishRecipe">Rezept öffentlich sichtbar</mat-checkbox></div>
+                        <mat-checkbox formControlName="publishRecipe">Rezept öffentlich sichtbar</mat-checkbox>
+                    </div>
                 </div>
             </div>
-            
+            <!---------------------------------------------Name section------------------------------------>
             <div class="row">
                 <div class="col-xs-12">
                     <div class="form-group">
@@ -19,7 +23,7 @@
                     </div>
                 </div>
             </div>
-            
+            <!---------------------------------------------Category section------------------------------------>
             <div class="row">
                 <div class="col-xs-12">
                     <div class="form-group">
@@ -29,40 +33,44 @@
                 </div>
             </div>
             <hr>
+            <!---------------------------------------------Image section------------------------------------>
             <div class="row olivegreen-lighter">
                 <div class="col-xs-12">
                     <h2>Rezeptbild hochladen</h2>
                     <div class="form-group">
                         <div class="form-group">
-                        <input type="file" accept="image/*" (change)="imagePreview($event)" #fileUpload>
-                        <div style="padding-top:5px;" class="row">
-                            <div class="col-xs-12" >
-                                <img style="max-width: 400px;"[src]="image.filePath" [alt]="image.fileName" class="img-responsive">
-                                
+                            <input type="file" accept="image/*" (change)="imagePreview($event)" #fileUpload>
+                            <div style="padding-top:5px;" class="row">
+                                <div class="col-xs-12">
+                                    <img style="max-width: 400px;" [src]="image.filePath" [alt]="image.fileName"
+                                        class="img-responsive">
+                                </div>
                             </div>
                         </div>
-                     </div>
-                        
+
                     </div>
                 </div>
             </div>
             <hr>
+            <!---------------------------------------------Description section------------------------------------>
             <div class="row">
                 <div class="col-xs-12">
                     <div class="form-group">
-                        <label for="about"><h2> Steckbrief</h2></label>
+                        <label for="about">
+                            <h2> Steckbrief</h2>
+                        </label>
                         <textarea type="text" id="about" class="form-control" rows="4" formControlName="about">
                         </textarea>
                     </div>
                 </div>
             </div>
             <hr>
+            <!---------------------------------------------Ingredients section------------------------------------>
             <div class="row olivegreen-lighter">
                 <div class="col-xs-12">
                     <div class="form-group">
                         <fieldset formArrayName="ingredients">
                             <h2>Zutaten</h2>
-
                             <div class="row" *ngFor="let ingredient of ingredientControls; let i = index"
                                 [formGroupName]="i">
                                 <div class="col-xs-6">
@@ -71,7 +79,7 @@
                                 </div>
                                 <div class="col-xs-2">
                                     <label for="{{i}}-amount">Menge</label>
-                                    <input type="number"  formControlName="amount" id="{{i}}-amount"
+                                    <input type="number" formControlName="amount" id="{{i}}-amount"
                                         class="form-control">
                                 </div>
                                 <div class="col-xs-2">
@@ -79,26 +87,28 @@
                                     <input type="text" formControlName="unit" id="{{i}}-unit" class="form-control">
                                 </div>
                                 <div class="col-xs-2">
-                                    <button style="margin-top: 25px;" class="btn btn-danger" (click)="onDeleteIngredient(i)">X</button>
+                                    <button style="margin-top: 25px;" class="btn btn-danger"
+                                        (click)="onDeleteIngredient(i)">X</button>
                                 </div>
                             </div>
-
                             <div style="padding-top:5px;" class="row">
                                 <div class="col-xs-12">
                                     <button type="button" (click)="onAddIngredient()"
                                         class="btn orange"><b>Hinzufügen</b></button>
                                 </div>
                             </div>
-
                         </fieldset>
                     </div>
                 </div>
             </div>
             <hr>
+            <!---------------------------------------------Preparation section------------------------------------>
             <div class="row">
                 <div class="col-xs-12">
                     <div class="form-group">
-                        <label for="description"><h2>Beschreibung der Zubereitung</h2></label>
+                        <label for="description">
+                            <h2>Beschreibung der Zubereitung</h2>
+                        </label>
                         <textarea type="text" id="description" class="form-control" rows="6"
                             formControlName="description">
                         </textarea>
@@ -106,7 +116,8 @@
                 </div>
             </div>
             <hr>
-          <div class="row olivegreen-lighter">
+            <!---------------------------------------------Variants section------------------------------------>
+            <div class="row olivegreen-lighter">
                 <div class="col-xs-12">
                     <div class="form-group">
                         <fieldset formArrayName="variants">
@@ -120,17 +131,18 @@
                                         formControlName="description"></textarea>
                                 </div>
                             </div>
-
                         </fieldset>
                     </div>
                 </div>
             </div>
             <hr>
-
+            <!---------------------------------------------Comment section------------------------------------>
             <div class="row">
                 <div class="col-xs-12">
                     <div class="form-group">
-                        <label for="comment"><h2>Kommentare</h2></label>
+                        <label for="comment">
+                            <h2>Kommentare</h2>
+                        </label>
                         <textarea type="text" id="comment" class="form-control" rows="3" formControlName="comment">
                         </textarea>
                     </div>

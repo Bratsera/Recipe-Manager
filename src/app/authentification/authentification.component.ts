@@ -14,8 +14,12 @@ import { Store } from '@ngrx/store';
 export class AuthentificationComponent implements OnInit, OnDestroy {
 
   loginMode = true;
+  // State for the loadingSpinner to show or hide in the template
   isLoading = false;
+  // The message to display if an error occurs in the login process
   errorMessage: string = null;
+
+  // Tracks the authentification state of the user
   storeSub: Subscription;
 
   constructor(private store: Store<fromApp.AppState>) { }
@@ -29,7 +33,11 @@ export class AuthentificationComponent implements OnInit, OnDestroy {
       this.errorMessage = authstate.authError;
     });
   }
-
+  /**
+   * Takes the userdata and triggers to login or signup process
+   * @param ngForm The template form
+   * @param isLoginMode Determine if the user wants to log in (true) or create a new account (false)
+   */
   onSubmit(ngForm: NgForm, isLoginMode: boolean): void {
     this.loginMode = isLoginMode;
     const email = ngForm.value.email;
@@ -44,10 +52,7 @@ export class AuthentificationComponent implements OnInit, OnDestroy {
     }
     ngForm.reset();
   }
-  // Switch from login to signup mode in the template
-  onSwitchMode(): void {
-    this.loginMode = !this.loginMode;
-  }
+
   ngOnDestroy(): void {
     if (this.storeSub) this.storeSub.unsubscribe();
   }

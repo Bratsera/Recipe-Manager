@@ -23,7 +23,7 @@ import { Subscription } from 'rxjs';
 })
 export class RecipeDetailComponent implements OnInit, OnDestroy {
   printIcon = faPrint;
-
+  // Tracks if the user is logged in
   userSubscription: Subscription;
   // Keeps track of the recipesState
   recipeSub: Subscription;
@@ -50,6 +50,7 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    // Get the current user state
     this.userSubscription = this.store.select('authentification')
     .pipe(map(authstate => authstate.user))
     .subscribe(user => {

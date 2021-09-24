@@ -52,10 +52,10 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     // Get the current user state
     this.userSubscription = this.store.select('authentification')
-    .pipe(map(authstate => authstate.user))
-    .subscribe(user => {
-      this.isAuthenticated = !!user;
-    });
+      .pipe(map(authstate => authstate.user))
+      .subscribe(user => {
+        this.isAuthenticated = !!user;
+      });
     // Buttons to edit the current recipes are only displayed, if the current route contains /my-recipes
     this.canEdit = this.router.url.includes('/my-recipes');
     // Create the ingredient form
@@ -76,7 +76,6 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
           return recipeState.recipes.find(recipe => {
             return recipe.id == this.id;
           })
-
         })
       )
       .subscribe(recipe => {
@@ -112,8 +111,6 @@ export class RecipeDetailComponent implements OnInit, OnDestroy {
 
   /**  Adds all ingredients to the shopping list, where the checkbox in the template is checked */
   onAddToShoppingList(): void {
-    /* Prevent from fetching the recipeState */
-    if (this.recipeSub) this.recipeSub.unsubscribe();
     // Array that stores all ingredients that should be added to the shopping list
     const ingredientsToAdd: Ingredient[] = [];
     const formArray = (<FormArray>this.ingredientsForm.get('ingredientsFormArray')).controls;

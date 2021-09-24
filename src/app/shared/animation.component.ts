@@ -37,7 +37,6 @@ export const fadeInOut = (fadeInStartXPos: number = -100, fadeOutEndXPos: number
     ];
 };
 
-
 /**
  * Fades new Elements in from the right with increasing opacity starting with opacity=0
  * @param fadeInStartXPos The relative x-position in px where the fadeIn shall start (default: 200px)

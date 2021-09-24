@@ -46,7 +46,7 @@
         <!------------------------------------------Auth routes Section------------------------------------->    
         <a mat-stroked-button routerLinkActive='red' *ngIf="!isAuthenticated" [routerLink]='["/auth"]'
             class="olivegreen-darkest">Login</a>
-        <a class="olivegreen-darkest" *ngIf="isAuthenticated" mat-stroked-button style="cursor: pointer;"
+        <a mat-stroked-button class="olivegreen-darkest" *ngIf="isAuthenticated" [routerLink]='["/recipes"]'
             (click)="onLogout()">Logout</a>
     </mat-toolbar>
 </div>
@@ -96,7 +96,7 @@
             [routerLink]='["/shopping-list"]'>Einkaufsliste</a>
         <a mat-stroked-button routerLinkActive='red' *ngIf="!isAuthenticated" [routerLink]='["/auth"]'
             class="olivegreen-darkest">Login</a>
-        <a class="olivegreen-darkest" *ngIf="isAuthenticated" mat-stroked-button style="cursor: pointer;"
+        <a mat-stroked-button class="olivegreen-darkest" *ngIf="isAuthenticated" [routerLink]='["/recipes"]' 
             (click)="onLogout()">Logout</a>
     </mat-toolbar>
 </div>

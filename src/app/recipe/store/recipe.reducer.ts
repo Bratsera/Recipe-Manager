@@ -24,10 +24,10 @@ export function recipesReducer(state = initialState, action: RecipeActions.Recip
             };
 
         case RecipeActions.UPDATE_RECIPE:
-        const recipeIndex = state.recipes.findIndex(recipe => {
-            return recipe.id == action.payload.index;
-        });
-        const updatedRecipe = {
+            const recipeIndex = state.recipes.findIndex(recipe => {
+                return recipe.id == action.payload.index;
+            });
+            const updatedRecipe = {
                 ...state.recipes[recipeIndex],
                 ...action.payload.recipe
             };
@@ -47,6 +47,7 @@ export function recipesReducer(state = initialState, action: RecipeActions.Recip
                     return recipe.id !== action.payload;
                 })
             };
+            
         default: return state;
     }
 }

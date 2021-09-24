@@ -19,7 +19,7 @@ export class HeaderComponentComponent implements OnInit, OnDestroy {
   searchIcon = faSearch;
 
   isAuthenticated = false;
-
+  idstring: string
   // -------------------Searchbar----------------------
   curRoute = '';
   // Value of search dropdown-field in the template
@@ -47,9 +47,12 @@ export class HeaderComponentComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.routerSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
+
+        //Checks if navigation root has changed and clears searchbar 
+        this.compareUrl(event.url)
+
         this.curRoute = event.url;
-        this.searchString = '';
-        this.categorySelected = '';
+
         if (!this.curRoute.includes('/shopping-list')) {
           // Check if the user is authenticated. If not, hide the navbar pages
           this.recipeNames = [];
@@ -62,22 +65,36 @@ export class HeaderComponentComponent implements OnInit, OnDestroy {
                 const filteredRecipeData = this.filterRecipes(recipes, user)
                 this.recipeNames = filteredRecipeData.filteredRecipeNames
                 this.categories = filteredRecipeData.categories;
+
               })
             });
         }
+        this.updateList();
       }
     })
   }
 
-  ngOnDestroy(): void {
-    this.searchString = '';
-    this.categorySelected = '';
-    this.userSubscription.unsubscribe();
-    this.recipeSubscription.unsubscribe();
-  }
-
-  onLogout(): void {
-    this.store.dispatch(new AuthActions.Logout());
+  /**
+   * Compares the current navigation route with the last route. If the url root has changed, it clears the searchbar inputs
+   * @param url The current navigation route-url
+   */
+  compareUrl(url: string) {
+    if (this.curRoute.includes('/recipes')) {
+      if (this.curRoute.includes('my-recipes')
+        && !url.includes('my-recipes')) {
+        this.searchString = '';
+        this.categorySelected = '';
+      }
+      else if (!this.curRoute.includes('my-recipes')
+        && url.includes('my-recipes')) {
+        this.searchString = '';
+        this.categorySelected = '';
+      }
+    }
+    else {
+      this.searchString = '';
+      this.categorySelected = '';
+    }
   }
 
   /**
@@ -104,7 +121,7 @@ export class HeaderComponentComponent implements OnInit, OnDestroy {
    * @returns an object containing two arrays of type string with all names an occuring categories of the filtered recipes 
    */
   filterRecipes(recipes: Recipe[], user: User) {
-    
+
     const filteredRecipeNames: string[] = [];
     const categories: string[] = [];
     // If the current route contains 'my-recipes'
@@ -135,5 +152,16 @@ export class HeaderComponentComponent implements OnInit, OnDestroy {
       filteredRecipeNames,
       categories
     }
+  }
+
+  ngOnDestroy(): void {
+    this.searchString = '';
+    this.categorySelected = '';
+    this.userSubscription.unsubscribe();
+    this.recipeSubscription.unsubscribe();
+  }
+
+  onLogout(): void {
+    this.store.dispatch(new AuthActions.Logout());
   }
 }

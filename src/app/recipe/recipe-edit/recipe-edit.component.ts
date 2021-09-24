@@ -126,7 +126,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
   }
   // Creates the variant controls of the template form
   createFormVariants() {
-    
+
     for (let option of this.variantOptions) {
       this.variants.push(new FormGroup({
         name: new FormControl(option.name),
@@ -171,7 +171,7 @@ export class RecipeEditComponent implements OnInit, OnDestroy {
       this.about = recipe.about;
       this.comment = recipe.comment;
       this.publishRecipe = recipe.publishRecipe;
-      
+
       // Create Form controls for every ingredient in the recipe
       if (recipe['ingredients']) {
         for (const ingredient of recipe.ingredients) {

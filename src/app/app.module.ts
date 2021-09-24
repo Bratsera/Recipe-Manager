@@ -17,12 +17,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ShoppingListEffects } from './shopping-list/store/shopping-list.effects';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -45,9 +42,6 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     FontAwesomeModule,
     MatToolbarModule,
     MatButtonModule,
-    MatInputModule,
-    MatSelectModule,
-    MatGridListModule,
     MatAutocompleteModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthentificationInterceptorService, multi: true }],

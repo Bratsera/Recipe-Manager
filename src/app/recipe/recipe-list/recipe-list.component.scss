@@ -1,53 +1,56 @@
+/*Icons */
 .recipe-variants{
     position: absolute;
     right: 5%;
-    top: 5px;
-   
+    top: 5px;   
     z-index: 10;
-   fa-icon{
+    fa-icon{
       font-size: 2rem;
       margin-left: 3px;
       margin-right: 3px;
-   }
-}
-
-carousel{
-    top: 30px;
-    height: 300px;
-    position: relative;
-}
-slide {
-    margin: 20px 15px 30px 15px;
-    padding-bottom: 50px;
-    border-radius: 20px;
-    height: 100%;
-    display: flex;
-    align-self: center;
-    justify-self: center;
-    text-align: center;
-    img{
-        border-radius: 20px;
-        display: block; 
-        width:100%;
-        max-width: 400px;
-        cursor: pointer;
-        
-    }
-    .carousel-caption{
-       h2{text-shadow:  2px 2px  rgba($color: #000000, $alpha: 0.7) ;}
-       
     }
 }
-.carousel-control-right, .right, carousel-control, carousel-control-next, ng-star-inserted{
-    background-image: none !important;
-    font-size: 50px !important;
-}
-
-.olivegreen-darker{
+/* Outer container of the content*/
+.content-container{
     
    padding: 30px 7px 70px 7px ;
    margin: 0 1px;
     border-radius: 20px;
+    /* carousel component */
+    carousel{
+        top: 30px;
+        height: 300px;
+        position: relative;
+        /* Image-slides in the carousel */
+        slide {
+            margin: 20px 15px 30px 15px;
+            padding-bottom: 50px;
+            border-radius: 20px;
+            height: 100%;
+            display: flex;
+            align-self: center;
+            justify-self: center;
+            text-align: center;
+            img{
+                border-radius: 20px;
+                display: block; 
+                width:100%;
+                max-width: 400px;
+                cursor: pointer;  
+            }
+            /* Slide-name */
+            .carousel-caption{
+                h2{
+                    text-shadow:  2px 2px  rgba($color: #000000, $alpha: 0.7);
+                }
+            }
+        }
+        /* Arrow-controls of the carousel */
+        .carousel-control-right, .right, carousel-control, carousel-control-next, ng-star-inserted{
+            background-image: none !important;
+            font-size: 50px !important;
+        }
+    }
 }
 
 

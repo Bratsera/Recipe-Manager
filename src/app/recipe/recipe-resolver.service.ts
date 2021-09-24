@@ -20,7 +20,6 @@ export class RecipeResolverService implements Resolve<Recipe[]>{
         private actions$: Actions
     ) { }
 
-
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         return this.store.select('recipes')
             .pipe(take(1),

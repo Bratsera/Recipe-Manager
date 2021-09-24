@@ -8,6 +8,7 @@
 
     </header>
     <main class="col-xs-9">
+      <!---------------------------------Shopping List section--------------------------------------------------->
       <table [@listState] mat-table cdkDropList (cdkDropListDropped)="drop($event)" [dataSource]="dataSource"
         class="mat-elevation-z8">
 
@@ -28,15 +29,13 @@
         <!-- Position Column -->
         <ng-container matColumnDef="position">
           <th class="position" mat-header-cell *matHeaderCellDef> No. </th>
-          <td class="position" mat-cell *matCellDef="let element; let i = index"
-          > {{i+1}} </td>
+          <td class="position" mat-cell *matCellDef="let element; let i = index"> {{i+1}} </td>
         </ng-container>
 
         <!-- Name Column -->
         <ng-container matColumnDef="name">
           <th class="name" mat-header-cell *matHeaderCellDef> Zutat </th>
-          <td class="name curser" mat-cell *matCellDef="let element; let i = index"
-            > {{element.name}}
+          <td class="name" mat-cell *matCellDef="let element; let i = index"> {{element.name}}
             <a mat-button *ngIf="selection.isSelected(element)" class="green-text orange"
               style="float: right; line-height: 25px; margin: 0 5px 0 5px; min-width: 20px; padding: 0 5px 0 5px;"
               (click)="onEditItem(i)">
@@ -45,44 +44,47 @@
           </td>
         </ng-container>
 
-        <!-- Weight Column -->
+        <!-- Amount Column -->
         <ng-container matColumnDef="amount">
           <th class="amount" mat-header-cell *matHeaderCellDef> Menge </th>
           <td class="amount" mat-cell *matCellDef="let element"> {{element.amount}} </td>
         </ng-container>
 
-        <!-- Symbol Column -->
+        <!-- Unit Column -->
         <ng-container matColumnDef="unit">
           <th class="unit" mat-header-cell *matHeaderCellDef> Einheit </th>
           <td class="unit" mat-cell *matCellDef="let element"> {{element.unit}} </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row cdkDrag *matRowDef="let row; let i = index; columns: displayedColumns;"  (click)="selection.toggle(row)"
-          [ngClass]="{red: selection.isSelected(row)}">
+        <tr mat-row cdkDrag *matRowDef="let row; let i = index; columns: displayedColumns;"
+          (click)="selection.toggle(row)" [ngClass]="{red: selection.isSelected(row)}">
         </tr>
 
       </table>
+
       <div class="olivegreen-lightest table-end" *ngIf="ingredients.length <= 0">Deine Einkaufsliste ist leer!</div>
+      <!---------------------------------Edit Item section--------------------------------------------------->
       <div appDontPrint *ngIf="showAddIng" class="olivegreen-lightest table-end">
-        <form (ngSubmit)="onAddItem()"[formGroup]="addIngredientForm">
+        <form (ngSubmit)="onAddItem()" [formGroup]="addIngredientForm">
           <div class="row">
             <div class="col-sm-5 form-group">
               <label for="name">Name</label>
-              <input type="text" id="name" class="form-control" formControlName ="name" name="name">
+              <input type="text" id="name" class="form-control" formControlName="name" name="name">
             </div>
             <div class="col-sm-2 form-group">
               <label for="amount">Menge</label>
-              <input type="number" id="amount" class="form-control" formControlName ="amount" name="amount">
+              <input type="number" id="amount" class="form-control" formControlName="amount" name="amount">
             </div>
             <div class="col-sm-2 form-group">
               <label for="unit">Einheit</label>
-              <input type="text" id="unit" class="form-control" formControlName ="unit" name="unit">
+              <input type="text" id="unit" class="form-control" formControlName="unit" name="unit">
             </div>
           </div>
           <div class="row">
             <div class="col-xs-12">
-              <button mat-button class="orange" type="submit" [disabled]="!addIngredientForm.valid">{{editMode ? "Aktualisieren"
+              <button mat-button class="orange" type="submit" [disabled]="!addIngredientForm.valid">{{editMode ?
+                "Aktualisieren"
                 : "Hinzufügen"}}</button>
               <button mat-button class="red" type="button" (click)="onClear()">Abbrechen</button>
             </div>
@@ -90,15 +92,16 @@
         </form>
 
       </div>
-      
+      <!---------------------------------Button section--------------------------------------------------->
       <a mat-button appDontPrint class="green-text orange" (click)="onEditItem()">
-        <fa-icon   [icon]="addIcon"></fa-icon>Hinzufügen
+        <fa-icon [icon]="addIcon"></fa-icon>Hinzufügen
       </a>
-      <a mat-button appDontPrint *ngIf="selection.selected.length > 0" class="green-text orange" (click)="onDeleteIngredients()">
-        <fa-icon   [icon]="deleteIcon"></fa-icon>Löschen
+      <a mat-button appDontPrint *ngIf="selection.selected.length > 0" class="green-text orange"
+        (click)="onDeleteIngredients()">
+        <fa-icon [icon]="deleteIcon"></fa-icon>Löschen
       </a>
       <a mat-button appDontPrint class="green-text orange" style="float: right;" (click)="printRecipe()">
-        <fa-icon  [icon]="printIcon"></fa-icon>Drucken
+        <fa-icon [icon]="printIcon"></fa-icon>Drucken
       </a>
     </main>
   </div>

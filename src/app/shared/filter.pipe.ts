@@ -18,8 +18,6 @@ export class FilterPipe implements PipeTransform {
         filteredList.push(recipe);
       }
     })
-
     return filteredList;
   }
-
 }

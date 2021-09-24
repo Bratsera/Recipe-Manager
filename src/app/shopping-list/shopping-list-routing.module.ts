@@ -6,8 +6,7 @@ import { ShoppingListComponent } from './shopping-list.component';
 
 const router: Routes = [
     {
-        path: '',
-        component: ShoppingListComponent,
+        path: '', component: ShoppingListComponent,
         canActivate: [AuthentificationGuard],
         resolve: [ShoppingListResolverService]
     }

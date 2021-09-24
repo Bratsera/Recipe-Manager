@@ -10,8 +10,15 @@ import * as ShoppingListActions from './shopping-list.actions';
 
 @Injectable()
 export class ShoppingListEffects {
-    constructor(private action$: Actions, private http: HttpClient, private store: Store<fromApp.AppState>) { }
+    
+    constructor(
+        private action$: Actions,
+        private http: HttpClient,
+        private store: Store<fromApp.AppState>
+        ) { }
+
     authStateSub = new Subscription();
+    
     /**
      * Send an http-request to select the shopping-list from the database whenever the action Fetch_Recipes is triggered.
      */
@@ -35,20 +42,20 @@ export class ShoppingListEffects {
      * Stores the ingredients of the current shopping-list-state to the database whenever the action StoreRecipes is triggered.
      */
     storeSL = createEffect(() => {
-        
+
         return this.action$.pipe(
             ofType(
                 ShoppingListActions.ADD_INGREDIENT,
                 ShoppingListActions.ADD_INGREDIENTS,
                 ShoppingListActions.UPDATE_INGREDIENT,
                 ShoppingListActions.DELETE_INGREDIENTS
-                ),
-            withLatestFrom(this.store.select('shoppingList'),this.store.select('authentification')),
+            ),
+            withLatestFrom(this.store.select('shoppingList'), this.store.select('authentification')),
             switchMap((state) => {
 
                 return this.http.put(
                     `https://recipe-manager-seraphim-default-rtdb.europe-west1.firebasedatabase.app/${state[2].user.id}/ShoppingList/db.json`,
-                    state[1].ingredients  
+                    state[1].ingredients
                 );
             })
         );

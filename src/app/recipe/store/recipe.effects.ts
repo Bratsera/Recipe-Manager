@@ -23,7 +23,7 @@ export class RecipesEffects {
                 );
             }),
             map(recipes => {
-                if(recipes == null){
+                if (recipes == null) {
                     return [];
                 }
                 return recipes.map(recipe => {

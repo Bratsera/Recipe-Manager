@@ -8,6 +8,7 @@ import { RecipeSearchService } from '../recipe-search.service';
 import { faDrumstickBite, faCheese, faCarrot, faSeedling } from '@fortawesome/free-solid-svg-icons';
 import { User } from 'src/app/authentification/user.model';
 import { Router } from '@angular/router';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-recipe-list',
@@ -15,9 +16,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./recipe-list.component.scss'],
 })
 export class RecipeListComponent implements OnInit, OnDestroy {
+  
   // Checks if there is a <slide> displayed in the template
   @ViewChild('content') content: ElementRef;
-  
+  smallScreen = false;
   // Template icons
   faMeatIcon = faDrumstickBite;
   faCheeseIcon = faCheese;
@@ -36,7 +38,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
 
   // Carousel component config
   itemsPerSlide = 3;
-  singleSlideOffset = true;
+  singleSlideOffset = false;
   noWrap = true;
   recipes: Recipe[];
   category: string = '';
@@ -45,10 +47,16 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<fromApp.AppState>,
     private searchService: RecipeSearchService,
-    private router: Router
+    private router: Router,
+    private breakpointObserver: BreakpointObserver
   ) { }
 
   ngOnInit(): void {
+    this.breakpointObserver.observe('(max-width: 768px)').subscribe( value =>{
+      this.smallScreen = value.matches
+      this.itemsPerSlide = this.smallScreen ? 1 : 3;
+    })
+    
     // Check if user is on the global route or the my-recipes route
     this.curRoute = this.router.url;
     this.myRecipeRoute = this.curRoute.includes('my-recipes');

@@ -1,6 +1,6 @@
 /*Icons */
 .recipe-variants{
-    position: absolute;
+   position: absolute;
     right: 5%;
     top: 5px;   
     z-index: 10;
@@ -10,17 +10,25 @@
       margin-right: 3px;
     }
 }
+
 /* Outer container of the content*/
 .content-container{
-    
+    max-height: 700px;
    padding: 30px 7px 70px 7px ;
    margin: 0 1px;
     border-radius: 20px;
+    carousel-inner{
+        max-height: 700px;
+        flex-wrap: nowrap;
+            flex-direction: row;
+    }
     /* carousel component */
     carousel{
         top: 30px;
         height: 300px;
         position: relative;
+        flex-wrap: nowrap;
+            flex-direction: row;
         /* Image-slides in the carousel */
         slide {
             margin: 20px 15px 30px 15px;
@@ -31,15 +39,21 @@
             align-self: center;
             justify-self: center;
             text-align: center;
+          
+            .slide-content{
+                position: relative;
+            }
             img{
                 border-radius: 20px;
                 display: block; 
                 width:100%;
                 max-width: 400px;
-                cursor: pointer;  
+                cursor: pointer; 
+                
             }
             /* Slide-name */
             .carousel-caption{
+                bottom: -30px;
                 h2{
                     text-shadow:  2px 2px  rgba($color: #000000, $alpha: 0.7);
                 }

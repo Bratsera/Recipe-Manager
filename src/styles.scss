@@ -194,11 +194,16 @@ a:link, a:visited {
   text-decoration: none;
 }
 
-mat-toolbar, .dropdown-menu{
+mat-toolbar, .dropdown-menu, .mobile-nav  {
   a:hover {
     background-color:  $red !important;
     text-decoration: none;
-  }}
+  }
+  .mobile-nav-button:hover{
+    background-color:  $red !important;
+    text-decoration: none;
+  }
+}
 
 
 .carousel-control{

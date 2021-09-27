@@ -2,7 +2,7 @@
     <app-loading-spinner></app-loading-spinner>
 </div>
 <div class="row" id="component-content" *ngIf="!isLoading">
-    <div>
+    <div class="col-md-12 col-xs-12">
         <h1>Willkommen auf My Recipe Book!</h1>
         <h3>Erstelle einen Account oder logge dich ein, um selber Rezepte sowie deine Einkaufsliste erstellen zu können.
         </h3>
@@ -22,7 +22,7 @@
                 [disabled]="!authForm.valid">
                 Login
             </button> oder
-            <button type="button" class="btn btn-primary" (click)="onSubmit(authForm, false)">
+            <button type="button" class="btn btn-primary" (click)="onSubmit(authForm, false)" [disabled]="!authForm.valid">
                 Account erstellen
             </button>
         </form>

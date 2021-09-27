@@ -8,7 +8,7 @@ import { RecipeSearchService } from '../recipe-search.service';
 import { faDrumstickBite, faCheese, faCarrot, faSeedling } from '@fortawesome/free-solid-svg-icons';
 import { User } from 'src/app/authentification/user.model';
 import { Router } from '@angular/router';
-import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {BreakpointObserver} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-recipe-list',
@@ -19,7 +19,10 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   
   // Checks if there is a <slide> displayed in the template
   @ViewChild('content') content: ElementRef;
+
+  //State of the screen size
   smallScreen = false;
+
   // Template icons
   faMeatIcon = faDrumstickBite;
   faCheeseIcon = faCheese;
@@ -31,6 +34,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   searchSubscription: Subscription;
   routerSubscription: Subscription;
   userSubscription: Subscription;
+  breakpointSubscription: Subscription;
 
   //Routing states
   curRoute: string;
@@ -38,7 +42,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
 
   // Carousel component config
   itemsPerSlide = 3;
-  singleSlideOffset = false;
+  singleSlideOffset = true;
   noWrap = true;
   recipes: Recipe[];
   category: string = '';
@@ -52,10 +56,8 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.breakpointObserver.observe('(max-width: 768px)').subscribe( value =>{
-      this.smallScreen = value.matches
-      this.itemsPerSlide = this.smallScreen ? 1 : 3;
-    })
+    // Observes changes of the screensize and adjusts template
+    this.checkScreenSize();
     
     // Check if user is on the global route or the my-recipes route
     this.curRoute = this.router.url;
@@ -69,6 +71,17 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     }
     // Update displayed recipes on changes
     this.checkForSearchFieldInput()
+  }
+  /**
+   * Checks if the screensize is smaller then 768px or not and adjusts the amount of slides shown in the template
+   */
+  checkScreenSize() {
+    this.breakpointSubscription = this.breakpointObserver.observe('(max-width: 768px)')
+    .subscribe( value =>{
+      this.smallScreen = value.matches
+      // Show only one slide on small devices and 3 slides on other
+      this.itemsPerSlide = this.smallScreen ? 1 : 3;
+    })
   }
 
   /**
@@ -139,5 +152,6 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     if (this.recipeSubscription) this.recipeSubscription.unsubscribe();
     if (this.searchSubscription) this.searchSubscription.unsubscribe();
     if (this.routerSubscription) this.routerSubscription.unsubscribe();
+    if (this.breakpointSubscription) this.breakpointSubscription.unsubscribe();
   }
 }

@@ -1,3 +1,28 @@
+/* --------------------------------Small device-----------------------------*/
+@media(max-width:768px){
+    /* Outer container of the content*/
+    .content-container{
+        carousel{
+            slide {
+                display: flex;
+            }
+        }
+    }
+    /* Slides */
+    :host ::ng-deep .item, .active{
+        margin-left: auto; 
+        margin-right: auto;
+        img{
+            border-radius: 20px;
+            display: block; 
+            width:100%;
+            max-width: 400px;
+            cursor: pointer; 
+            max-height: 300px;
+        }
+    } 
+}
+
 /*Icons */
 .recipe-variants{
    position: absolute;
@@ -11,6 +36,7 @@
     }
 }
 
+
 /* Outer container of the content*/
 .content-container{
     max-height: 700px;
@@ -22,34 +48,38 @@
         flex-wrap: nowrap;
             flex-direction: row;
     }
+   
     /* carousel component */
     carousel{
+ 
         top: 30px;
         height: 300px;
         position: relative;
         flex-wrap: nowrap;
-            flex-direction: row;
+        flex-direction: row;
+
         /* Image-slides in the carousel */
         slide {
+        
             margin: 20px 15px 30px 15px;
             padding-bottom: 50px;
             border-radius: 20px;
             height: 100%;
-            display: flex;
+          
             align-self: center;
             justify-self: center;
             text-align: center;
-          
+            
             .slide-content{
-                position: relative;
+                position: relative;   
             }
+
             img{
                 border-radius: 20px;
                 display: block; 
                 width:100%;
                 max-width: 400px;
-                cursor: pointer; 
-                
+                cursor: pointer;             
             }
             /* Slide-name */
             .carousel-caption{

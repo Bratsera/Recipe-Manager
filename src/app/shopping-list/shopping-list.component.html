@@ -72,7 +72,7 @@
     <div appDontPrint *ngIf="showAddIng" class="olivegreen-lightest  row">
       <form (ngSubmit)="onAddItem()" [formGroup]="addIngredientForm"
         class="table-end col-md-10 col-md-offset-1 col-xs-12 col-sm-12 col-lg-8 col-lg-offset-2">
-        >
+        
         <div class="col-sm-5 form-group">
           <label for="name">Name</label>
           <input type="text" id="name" class="form-control" formControlName="name" name="name">
@@ -102,14 +102,14 @@
     <div class="row edit-buttons">
       <div class="col-md-10 col-md-offset-1 col-xs-12 col-sm-12 col-lg-8 col-lg-offset-2">
         <a mat-button appDontPrint class="green-text orange" (click)="onEditItem()">
-          <fa-icon [icon]="addIcon"></fa-icon>Hinzufügen
+          <fa-icon [icon]="addIcon"></fa-icon><p class="icon-names">Hinzufügen</p>
         </a>
         <a mat-button appDontPrint *ngIf="selection.selected.length > 0" class="green-text orange"
           (click)="onDeleteIngredients()">
-          <fa-icon [icon]="deleteIcon"></fa-icon>Löschen
+          <fa-icon [icon]="deleteIcon"></fa-icon><p class="icon-names"> Löschen </p>
         </a>
         <a mat-button appDontPrint class="green-text orange" style="float: right;" (click)="printRecipe()">
-          <fa-icon [icon]="printIcon"></fa-icon>Drucken
+          <fa-icon [icon]="printIcon"></fa-icon><p class="icon-names">Drucken</p>
         </a>
       </div>
     </div>

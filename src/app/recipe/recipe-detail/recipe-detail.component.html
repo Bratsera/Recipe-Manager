@@ -38,7 +38,7 @@
             (click)='shoppingListEdit()'>Zur
             Einkaufsliste hinzufügen</button>
         <h2 style="padding-left: 15px;">Zutaten:</h2>
-        <form id="ing-container" [formGroup]="ingredientsForm" (ngSubmit)=onAddToShoppingList()>
+        <form id="ing-container" [formGroup]="ingredientsForm" >
             <ul class=" test2" id="ing-list" formArrayName="ingredientsFormArray">
                 <li class="list-group-item col-xs-12 col-sm-6 col-md-4 col-lg-3" id="ing-item"
                     *ngFor='let ingredient of recipe.ingredients; let i = index' [formGroupName]="i">
@@ -48,12 +48,14 @@
                     {{ingredient.amount}} {{ingredient.unit}}
                 </li>
             </ul>
-
-            <div appDontPrint class="sl-button-group" *ngIf="addToShoppingListEdit">
-                <button mat-raised-button class="orange" type="submit">Hinzufügen</button>
+            
+        </form>
+        <div class="row">
+            <div appDontPrint class="sl-button-group col-xs-12 col-sm-6 col-md-4 col-lg-3" *ngIf="addToShoppingListEdit">
+                <button mat-raised-button class="orange" (click)="onAddToShoppingList()">Hinzufügen</button>
                 <button mat-raised-button class="red" (click)=onCancel()>Abbrechen</button>
             </div>
-        </form>
+        </div>
     </article>
     <hr>
     <article class="row">

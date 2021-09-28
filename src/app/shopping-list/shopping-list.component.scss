@@ -98,4 +98,10 @@ fa-icon{
   padding-right: 0; 
 }
 
+/* Hide icon names on small devices */
+@media(max-width: 400px){
+  p.icon-names{
+    display: none;
+  }
+}
   

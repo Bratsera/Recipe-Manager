@@ -76,10 +76,9 @@
                 (click)="onLogout()">Logout</a>
         </mat-toolbar-row>
         <!------------------------------------------Searchbar Section------------------------------------->
-        <mat-toolbar-row>
-
+        <mat-toolbar-row *ngIf="router.url.includes('/recipes')">
             <div class="recipe-nav">
-                <div class="medium-nav-searchbar" *ngIf="router.url.includes('/recipes')">
+                <div class="medium-nav-searchbar">
                     <select class="olivegreen-lighter" name="Kategorie" id="category" [(ngModel)]="categorySelected"
                         (ngModelChange)="updateList()">
                         <option value="" selected>Alle</option>
@@ -152,7 +151,6 @@
                     {{option}}
                 </mat-option>
             </mat-autocomplete>
-            <fa-icon [icon]="searchIcon"></fa-icon>
         </div>
     </div>
 </div>

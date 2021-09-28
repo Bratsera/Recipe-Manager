@@ -1,4 +1,4 @@
-<main class="container-fluid row olivegreen-lighter" [@listState]>
+<main class="container-fluid olivegreen-lighter" [@listState]>
     <header class="row">
         <div class="col-xs-12 col-lg-9">
             <div appDontPrint class="recipe-detail-button">
@@ -11,7 +11,8 @@
                             <li><a mat-button style="cursor: pointer; border-radius: 0;" class="orange"
                                     [routerLink]="['edit']">Rezept bearbeiten</a></li>
                             <li><a mat-button style="cursor: pointer; border-radius: 0;" class="orange"
-                                    [routerLink]="['/recipes/my-recipes']" (click)='onDeleteRecipe()'>Rezept löschen</a>
+                                    [routerLink]="['/recipes/my-recipes']" (click)='onDeleteRecipe()'>Rezept
+                                    löschen</a>
                             </li>
                         </ul>
                     </div>
@@ -21,7 +22,6 @@
                 </div>
             </div>
             <h1><u>Rezeptname: {{recipe.name}}</u></h1>
-
             <div>
                 <h2>Steckbrief</h2>
                 <p>{{recipe.about}}</p>
@@ -34,15 +34,17 @@
     </header>
     <hr>
     <article class="row">
-        <button mat-button appDontPrint *ngIf="isAuthenticated" class="recipe-detail-button orange" (click)='shoppingListEdit()'>Zur
+        <button mat-button appDontPrint *ngIf="isAuthenticated" class="recipe-detail-button orange"
+            (click)='shoppingListEdit()'>Zur
             Einkaufsliste hinzufügen</button>
         <h2 style="padding-left: 15px;">Zutaten:</h2>
         <form id="ing-container" [formGroup]="ingredientsForm" (ngSubmit)=onAddToShoppingList()>
             <ul class=" test2" id="ing-list" formArrayName="ingredientsFormArray">
                 <li class="list-group-item col-xs-12 col-sm-6 col-md-4 col-lg-3" id="ing-item"
                     *ngFor='let ingredient of recipe.ingredients; let i = index' [formGroupName]="i">
-                    <input appDontPrint type="checkbox" [ngStyle]="{'display': addToShoppingListEdit ? 'inline' : 'none'}"
-                        value="{{ingredient.name}}" formControlName="checked"> {{ingredient.name}} x
+                    <input appDontPrint type="checkbox"
+                        [ngStyle]="{'display': addToShoppingListEdit ? 'inline' : 'none'}" value="{{ingredient.name}}"
+                        formControlName="checked"> {{ingredient.name}} x
                     {{ingredient.amount}} {{ingredient.unit}}
                 </li>
             </ul>
@@ -55,7 +57,6 @@
     </article>
     <hr>
     <article class="row">
-
         <div class="col-xs-12 col-lg-8 col-sm-8 col-md-8">
             <h2><u>Zubereitung:</u></h2>
             <p> {{recipe.description}}</p>
@@ -76,5 +77,4 @@
             </aside>
         </div>
     </article>
-    <hr>
 </main>

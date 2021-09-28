@@ -8,6 +8,17 @@ textarea.ng-invalid.ng-touched{
     cursor: not-allowed;
 }
 main{
-    padding: 10px 0px;
+    padding: 10px 10px;
     border-radius: 20px;
+}
+.edit-section{
+    padding: 10px;
+    margin: 0 -10px;
+}
+hr{
+    margin:0 -10px;
+    border-width: 2px;
+}
+.form-group{
+    margin-bottom:0;
 }

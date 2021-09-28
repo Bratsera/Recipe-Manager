@@ -1,57 +1,62 @@
-<div appDontPrint class="row">
-  <div class="row olivegreen-darker content-container">
-    <div class="col-xs-12">
-      <h1><u>{{myRecipeRoute ? "Meine Rezepte:" : "Alle Rezepte"}}</u></h1>
-      <h2>Kategorie: {{category == '' ? "Alle": category}}</h2>
+<div appDontPrint>
+  <div class="olivegreen-darker content-container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1><u>{{myRecipeRoute ? "Meine Rezepte:" : "Alle Rezepte"}}</u></h1>
+        <h2>Kategorie: {{category == '' ? "Alle": category}}</h2>
+      </div>
     </div>
-
-    <carousel *ngIf="smallScreen" [itemsPerSlide]="itemsPerSlide" [singleSlideOffset]="singleSlideOffset" [noWrap]="!noWrap"
-      [interval]="false" [startFromIndex]="1" [isAnimated]="true">
+    <!-----------------------------------------------Small device carousel (one slide)----------------------------------------->
+    <carousel *ngIf="smallScreen" [itemsPerSlide]="itemsPerSlide" [singleSlideOffset]="singleSlideOffset"
+      [noWrap]="!noWrap" [interval]="false" [startFromIndex]="1" [isAnimated]="true" class="row">
       <slide *ngFor='let recipeEl of recipes | filter:searchString:category; let i = index' #content
         [routerLink]="recipeEl.id">
-        <div class="slide-content"><div class="recipe-variants">
-          <fa-icon *ngIf="recipeEl.variants[0].checked" style="color: lightcoral;" [icon]="faMeatIcon"></fa-icon>
-          <fa-icon *ngIf="recipeEl.variants[1].checked" style="color: #ffff66;" [icon]="faCheeseIcon"></fa-icon>
-          <fa-icon *ngIf="recipeEl.variants[2].checked" style="color: greenyellow;" [icon]="faSeedlingIcon"></fa-icon>
+        <div class="slide-content">
+          <!-----------------------------------------Variant icons section------------------------------------------------->
+          <div class="recipe-variants">
+            <fa-icon *ngIf="recipeEl.variants[0].checked" style="color: lightcoral;" [icon]="faMeatIcon"></fa-icon>
+            <fa-icon *ngIf="recipeEl.variants[1].checked" style="color: #ffff66;" [icon]="faCheeseIcon"></fa-icon>
+            <fa-icon *ngIf="recipeEl.variants[2].checked" style="color: greenyellow;" [icon]="faSeedlingIcon">
+            </fa-icon>
+          </div>
+          <!-----------------------------------------Slide image----------------------------------------------------------->
+          <img [src]="recipeEl.image.filePath" alt="Bild zum Rezept {{recipeEl.name}}">
+          <!-----------------------------------------Slide name----------------------------------------------------------->
+          <div class="carousel-caption">
+            <h2>{{recipeEl.name}}</h2>
+          </div>
         </div>
-
-        <img [src]="recipeEl.image.filePath" alt="Bild zum Rezept {{recipeEl.name}}">
-        <div class="carousel-caption">
-          <h2>{{recipeEl.name}}</h2>
-        </div>
-      </div>
-        
-        
-
       </slide>
+      <!-----------------------------------------No Slides----------------------------------------------------------->
       <div *ngIf="!content">
         <p style="margin-left: 20px;font-size: 25px;">Keine Rezepte gefunden</p>
       </div>
-
     </carousel>
-    <carousel *ngIf="!smallScreen" [itemsPerSlide]="itemsPerSlide" [singleSlideOffset]="singleSlideOffset" [noWrap]="!noWrap"
-      [interval]="false" [startFromIndex]="1" [isAnimated]="true">
+    <!-----------------------------------------------Medium/large device carousel (three slides)----------------------------------------->
+    <carousel *ngIf="!smallScreen" [itemsPerSlide]="itemsPerSlide" [singleSlideOffset]="singleSlideOffset"
+      [noWrap]="!noWrap" [interval]="false" [startFromIndex]="1" [isAnimated]="true" class="row">
       <slide *ngFor='let recipeEl of recipes | filter:searchString:category; let i = index' #content
         [routerLink]="recipeEl.id">
-        <div class="slide-content"><div class="recipe-variants">
-          <fa-icon *ngIf="recipeEl.variants[0].checked" style="color: lightcoral;" [icon]="faMeatIcon"></fa-icon>
-          <fa-icon *ngIf="recipeEl.variants[1].checked" style="color: #ffff66;" [icon]="faCheeseIcon"></fa-icon>
-          <fa-icon *ngIf="recipeEl.variants[2].checked" style="color: greenyellow;" [icon]="faSeedlingIcon"></fa-icon>
+        <div class="slide-content">
+          <!-----------------------------------------Variant icons section------------------------------------------------->
+          <div class="recipe-variants">
+            <fa-icon *ngIf="recipeEl.variants[0].checked" style="color: lightcoral;" [icon]="faMeatIcon"></fa-icon>
+            <fa-icon *ngIf="recipeEl.variants[1].checked" style="color: #ffff66;" [icon]="faCheeseIcon"></fa-icon>
+            <fa-icon *ngIf="recipeEl.variants[2].checked" style="color: greenyellow;" [icon]="faSeedlingIcon">
+            </fa-icon>
+          </div>
+          <!-----------------------------------------Slide image----------------------------------------------------------->
+          <img [src]="recipeEl.image.filePath" alt="Bild zum Rezept {{recipeEl.name}}">
+          <!-----------------------------------------Slide name----------------------------------------------------------->
+          <div class="carousel-caption">
+            <h2>{{recipeEl.name}}</h2>
+          </div>
         </div>
-
-        <img [src]="recipeEl.image.filePath" alt="Bild zum Rezept {{recipeEl.name}}">
-        <div class="carousel-caption">
-          <h2>{{recipeEl.name}}</h2>
-        </div>
-      </div>
-        
-        
-
       </slide>
+      <!-----------------------------------------No Slides----------------------------------------------------------->
       <div *ngIf="!content">
         <p style="margin-left: 20px;font-size: 25px;">Keine Rezepte gefunden</p>
       </div>
-
     </carousel>
   </div>
 </div>

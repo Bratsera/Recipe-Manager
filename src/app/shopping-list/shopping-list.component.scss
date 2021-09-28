@@ -1,4 +1,5 @@
 /* --------------------------------------------drag & drop classes --------------------------------------------------*/
+main{
 .container {
   width: 400px;
   max-width: 100%;
@@ -6,7 +7,7 @@
   display: inline-block;
   vertical-align: top;
 }
-  
+}
 .list {
   border: solid 1px #ccc;
   min-height: 60px;
@@ -74,7 +75,9 @@ form{
 fa-icon{
   margin-right: 5px;
 }
-
+.row{
+  margin: 0;
+}
 .table-end{
   min-height: fit-content;
   min-width: 185px;
@@ -89,6 +92,10 @@ fa-icon{
               0 8px 10px 1px rgba(0, 0, 0, 0.14),
               0 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
- 
+
+.edit-buttons > div[class*="col-"]{
+  padding-left: 0; 
+  padding-right: 0; 
+}
 
   

@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
 import { AuthentificationService } from '../authentification.service';
 import { User } from '../user.model';
 import * as AuthActions from './authentification.actions';
@@ -83,7 +82,7 @@ export class AuthentificationEffects {
                 return this.http.post<AuthResponseData>(
 
                     'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='
-                    + environment.firebaseApiKey,
+                    + process.env.NG_APP_FIREBASE_API_KEY,
                     {
                         email: authData.payload.email,
                         password: authData.payload.password,
@@ -118,7 +117,7 @@ export class AuthentificationEffects {
         return this.actions$.pipe(
             ofType(AuthActions.LOGIN_START), switchMap((authData: AuthActions.LoginStart) => {
                 return this.http.post<AuthResponseData>(
-                    'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + environment.firebaseApiKey, {
+                    'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + process.env.NG_APP_FIREBASE_API_KEY, {
                     email: authData.payload.email,
                     password: authData.payload.password,
                     returnSecureToken: true

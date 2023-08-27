@@ -7,7 +7,6 @@ import { Recipe } from '../recipe.model';
 import * as RecipeActions from './recipe.actions';
 import * as fromApp from '../../store/app.reducer';
 
-
 @Injectable()
 export class RecipesEffects {
     /**
@@ -19,7 +18,7 @@ export class RecipesEffects {
             switchMap(() => {
                 // Get the recipes from the database
                 return this.http.get<Recipe[]>(
-                    `https://recipe-manager-seraphim-default-rtdb.europe-west1.firebasedatabase.app/Recipes/db.json`
+                    `${process.env.NG_APP_DATABASE_URL}/Recipes/db.json`
                 );
             }),
             map(recipes => {
@@ -47,7 +46,7 @@ export class RecipesEffects {
             withLatestFrom(this.store.select('recipes')),
             switchMap(([actionData, recipesState]) => {
                 return this.http.put(
-                    `https://recipe-manager-seraphim-default-rtdb.europe-west1.firebasedatabase.app/Recipes/db.json`,
+                    `${process.env.NG_APP_DATABASE_URL}/Recipes/db.json`,
                     recipesState.recipes);
             }));
     }, { dispatch: false });

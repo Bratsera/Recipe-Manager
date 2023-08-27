@@ -28,7 +28,7 @@ export class ShoppingListEffects {
             withLatestFrom(this.store.select('authentification')),
             switchMap((state) => {
                 return this.http.get<Ingredient[]>(
-                    `https://recipe-manager-seraphim-default-rtdb.europe-west1.firebasedatabase.app/${state[1].user.id}/ShoppingList/db.json`
+                    `${process.env.NG_APP_DATABASE_URL}/User/${state[1].user.id}/ShoppingList/db.json`
                 );
             }),
             map(ingredients => {
@@ -54,7 +54,7 @@ export class ShoppingListEffects {
             switchMap((state) => {
 
                 return this.http.put(
-                    `https://recipe-manager-seraphim-default-rtdb.europe-west1.firebasedatabase.app/${state[2].user.id}/ShoppingList/db.json`,
+                    `${process.env.NG_APP_DATABASE_URL}/User/${state[2].user.id}/ShoppingList/db.json`,
                     state[1].ingredients
                 );
             })
